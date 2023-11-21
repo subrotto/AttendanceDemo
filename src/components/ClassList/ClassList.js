@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import SpecificClass from '../SpecificClass/SpecificClass';
 
 const ClassList = () => {
     const [classes,setClasses]=useState([]);
@@ -30,12 +31,12 @@ const ClassList = () => {
         fetch(`http://localhost:4000/getCourses/${courseId}`)
         .then(res=>res.json())
         .then(data=>{
-            setClasses((prevClasses) => [...prevClasses, ...data.classes]);
+            setClasses( data.classes);
          
         });
     },[courseId]);
 
-    console.log(classes)
+    
     
     
 
@@ -45,9 +46,7 @@ const ClassList = () => {
             <button onClick={handleClassAdd}>ADD CLASS</button>
 
             {
-                classes.map(cls=><div>
-                    {cls.length}
-                </div>)
+               classes.map(classId=><SpecificClass key={classId} classId={classId}></SpecificClass>) 
             }
 
         </div>
