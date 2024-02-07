@@ -1,36 +1,92 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { QrReader } from "react-qr-reader";
 
 const StudentList = () => {
     const {classId}=useParams();
     const studentRef=useRef();
 
-    const handleStudentAdd=()=>{
-        const studentId=studentRef.current.value;
+    const [scanResult, setResult] = useState('');
+  const [isStart, setIsStart] = useState(false);
+  
 
-        fetch(`http://localhost:4000/addStudent/${classId}`,{
-            method:'POST',
-            headers: {
-                
-                'Content-Type': 'application/json'
-              },
-              body:JSON.stringify({studentId})
-        })
-        .then(res=>res.json())
-        .then(data=>{
-            if(data.insertedId){
-                
-        }});
+  const handlePlay = () => {
+    setResult('');
+    setIsStart(!isStart);
+  };
+  const handleQr = (result) => {
+    console.log(result)
+    if (!!result) {
+      if(result?.text){
+        setResult(result?.text);
+        
+  
+        fetch(`http://localhost:5000/addStudent/${classId}`,{
+          method:'POST',
+          headers: {
+              
+              'Content-Type': 'application/json'
+            },
+            body:JSON.stringify({result})
+      })
+      .then(res=>res.json())
+      .then(data=>{
+          if(data.insertedId){
+              alert('Attendance Done');
+      }});
 
-        studentRef.current.value='';
-        alert('Attendance Done');
-
+      }
+      
     }
+    // console.log(result,'vhvvk')
+  };
+
+
+
+const handleStudent=()=>{
+  const studentId=studentRef.current.value;
+  fetch(`http://localhost:5000/addStudent/${classId}`,{
+        method:'POST',
+        headers: {
+            
+            'Content-Type': 'application/json'
+          },
+          body:JSON.stringify({studentId})
+    })
+    .then(res=>res.json())
+    .then(data=>{
+        if(data.insertedId){
+            
+    }});
+    studentRef.current.value='';
+        alert('Attendance Done');
+    
+}
+    
     return (
+        <main>
+          <input ref={studentRef} type="text" name="" id="" placeholder='Type Your ID'/>
+          <button onClick={handleStudent}>ADD STUDENT</button>
+          <br />
+      <div className="content-box w-11/12 mx-auto min-h-screen gap-5 flex-wrap flex justify-center items-center">
         <div>
-             <input type="text" name="" id="" placeholder='Enter Student ID' ref={studentRef}/>
-            <button onClick={handleStudentAdd}>ADD STUDENT</button>
+          <button onClick={handlePlay} className=" btn btn-primary">
+            {isStart ? "Stop Scanning" : "Scan Now"}
+          </button>
+          <p>{scanResult}</p>
         </div>
+
+        {isStart && (
+          <div className="relative w-[400px] shadow-inner shadow-black bg-slate-200 rounded-lg border-8 px-10">
+            <QrReader
+              onResult={(result) => handleQr(result)}
+              
+            />
+            <div className="p-px line absolute z-10 left-0 w-full top-0 bg-red-600 shadow shadow-white"></div>
+          </div>
+        )}
+      </div>
+    </main>
     );
 };
 

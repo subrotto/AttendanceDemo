@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const AttendancePerClassOnePerson = (props) => {
+const StuAttendancePerClassOnePerson = (props) => {
     const [student,setStudent]=useState({});
     const studentId=props.studentId;
     
@@ -22,4 +22,4 @@ const AttendancePerClassOnePerson = (props) => {
     );
 };
 
-export default AttendancePerClassOnePerson;
+export default StuAttendancePerClassOnePerson;

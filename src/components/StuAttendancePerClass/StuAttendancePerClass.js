@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import AttendancePerClassOnePerson from '../AttendancePerClassOnePerson/AttendancePerClassOnePerson';
+import StuAttendancePerClassOnePerson from '../StuAttendancePerClassOnePerson/StuAttendancePerClassOnePerson';
 
-const AttendancePerClass = () => {
+
+const StuAttendancePerClass = () => {
 const {classId}=useParams();
 const [studentlist,setStudentlist]=useState([]);
-
-
     useEffect(()=>{
         fetch(`http://localhost:5000/getClasses/${classId
     }`)
@@ -16,12 +15,11 @@ const [studentlist,setStudentlist]=useState([]);
        
     return (
         <div>
-           
             {
-                studentlist.map(student=><AttendancePerClassOnePerson studentId={student}></AttendancePerClassOnePerson>)
+                studentlist.map(student=><StuAttendancePerClassOnePerson studentId={student}></StuAttendancePerClassOnePerson>)
             }
         </div>
     );
 };
 
-export default AttendancePerClass;
+export default StuAttendancePerClass;

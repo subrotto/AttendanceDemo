@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const SpecificClass = (props) => {
+const StuSpecificClass = (props) => {
 
    const [classlist,setClasslist]=useState({});
         const classId=props.classId;
@@ -17,10 +17,10 @@ const SpecificClass = (props) => {
     return (
         <div>
             {classlist.name}
-            <Link to={`/student/${classId}`}><button>Enter</button></Link>
-            <Link to={`/perclassattendance/${classId}`}><button>Display Attendance For this Class</button></Link>
+            
+            <Link to={`/stuperclassattendance/${classId}`}><button>Display Attendance For this Class</button></Link>
         </div>
     );
 };
 
-export default SpecificClass;
+export default StuSpecificClass;

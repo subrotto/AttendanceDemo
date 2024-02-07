@@ -10,7 +10,7 @@ const ClassList = () => {
     const handleClassAdd=()=>{
         const className=classRef.current.value;
 
-        fetch(`http://localhost:4000/addClass/${courseId}`,{
+        fetch(`http://localhost:5000/addClass/${courseId}`,{
             method:'POST',
             headers: {
                 
@@ -28,7 +28,7 @@ const ClassList = () => {
     }
 
     useEffect(()=>{
-        fetch(`http://localhost:4000/getCourses/${courseId}`)
+        fetch(`http://localhost:5000/getCourses/${courseId}`)
         .then(res=>res.json())
         .then(data=>{
             setClasses( data.classes);
