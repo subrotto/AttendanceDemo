@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { QrReader } from "react-qr-reader";
 
@@ -6,35 +6,47 @@ const StudentList = () => {
     const {classId}=useParams();
     const studentRef=useRef();
 
+  const scanneref=useRef();
     const [scanResult, setResult] = useState('');
   const [isStart, setIsStart] = useState(false);
   
+  
+useEffect(()=>{
+  if(scanneref.current.innerText.length>0){
 
+    fetch(`http://localhost:5000/addStudent/${classId}`,{
+      method:'POST',
+      headers: {
+          
+          'Content-Type': 'application/json'
+        },
+        body:JSON.stringify({text:scanneref.current.innerText})
+  })
+  .then(res=>res.json())
+  .then(data=>{
+      if(data.insertedId){
+          alert('Attendance Done');
+  }});
+
+  }
+
+
+},[scanResult])
   const handlePlay = () => {
     setResult('');
     setIsStart(!isStart);
   };
   const handleQr = (result) => {
-    console.log(result)
+    
     if (!!result) {
       if(result?.text){
+        scanneref.current.innerText=result.text;
+        if(scanneref.current.innerText!=scanResult)
         setResult(result?.text);
         
   
-        fetch(`http://localhost:5000/addStudent/${classId}`,{
-          method:'POST',
-          headers: {
-              
-              'Content-Type': 'application/json'
-            },
-            body:JSON.stringify({result})
-      })
-      .then(res=>res.json())
-      .then(data=>{
-          if(data.insertedId){
-              alert('Attendance Done');
-      }});
-
+      
+      console.log(result)
       }
       
     }
@@ -65,15 +77,15 @@ const handleStudent=()=>{
     
     return (
         <main>
-          <input ref={studentRef} type="text" name="" id="" placeholder='Type Your ID'/>
+          {/* <input ref={studentRef} type="text" name="" id="" placeholder='Type Your ID'/>
           <button onClick={handleStudent}>ADD STUDENT</button>
-          <br />
+          <br /> */}
       <div className="content-box w-11/12 mx-auto min-h-screen gap-5 flex-wrap flex justify-center items-center">
         <div>
           <button onClick={handlePlay} className=" btn btn-primary">
             {isStart ? "Stop Scanning" : "Scan Now"}
           </button>
-          <p>{scanResult}</p>
+          <p ref={scanneref}></p>
         </div>
 
         {isStart && (

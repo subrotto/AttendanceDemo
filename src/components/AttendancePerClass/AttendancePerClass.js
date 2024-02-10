@@ -16,7 +16,7 @@ const [studentlist,setStudentlist]=useState([]);
        
     return (
         <div>
-           
+           Total Students :{studentlist.length}
             {
                 studentlist.map(student=><AttendancePerClassOnePerson studentId={student}></AttendancePerClassOnePerson>)
             }

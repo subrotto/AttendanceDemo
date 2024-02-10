@@ -7,23 +7,29 @@ const CourseList = () => {
     const handleCourseAdd=()=>{
         
         const courseName=courseRef.current.value;
-        fetch('http://localhost:5000/addCourse',{
-            method:'POST',
-            headers: {
-                
-                'Content-Type': 'application/json'
-              },
-              body:JSON.stringify({courseName})
-        })
-        .then(res=>res.json())
-        .then(data=>{
-            if(data.insertedId){
-                
+        if(courseName){
+            fetch('http://localhost:5000/addCourse',{
+                method:'POST',
+                headers: {
+                    
+                    'Content-Type': 'application/json'
+                  },
+                  body:JSON.stringify({courseName})
+            })
+            .then(res=>res.json())
+            .then(data=>{
+                if(data.insertedId){
+                    
+            }
+            });
+    
+            courseRef.current.value='';
+                    alert('Course Successfully Added');
         }
-        });
-
-        courseRef.current.value='';
-                alert('Course Successfully Added');
+        else{
+            alert('Please Enter a Course Name');
+        }
+        
 
     }
 
@@ -37,16 +43,44 @@ const CourseList = () => {
         .then(data=>setCourses(data.courses));
     },[])
     
+    
     return (
-        <div>
-            <input onChange={(e)=>searchOptions(e.target.value)} type="text" name="" id="" placeholder='Search to Filter Options'/>
+        <div className='mt-10 '>
+            <input className='input border border-base-300' onChange={(e)=>searchOptions(e.target.value)} type="text" name="" id="" placeholder='Search to filter course '  />
+          
             
             <br />
-            <input className='border-4' type="text" name="" id="" placeholder='Course-Code' ref={courseRef}/>
-            <button onClick={handleCourseAdd}
-  class="inline-block cursor-pointer rounded-md bg-gray-800 px-4 py-3 text-center text-sm font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-gray-900">
-  ADD COURSE
-</button>
+
+
+  
+
+
+              
+         <div className=' items-center m-4 gap-2'>
+
+         
+       <div>
+        <div className='mb-4'>
+  <input
+    className='input border border-base-300'
+    type="text"
+    name=""
+    id=""
+    placeholder='Course-Code'
+    ref={courseRef}
+  />
+  
+</div>
+
+
+
+           
+          <button className='btn btn-outline' onClick={handleCourseAdd}>
+    ADD COURSE
+  </button>
+       </div>
+           
+         </div>
 
         <div className='mt-12 '>
         {
@@ -66,6 +100,13 @@ const CourseList = () => {
         
         }
         </div>
+   
+
+
+
+
+
+
 
         </div>
     );

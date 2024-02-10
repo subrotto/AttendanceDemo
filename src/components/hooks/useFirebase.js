@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import initializeAuthentication from "../Firebase/firebase.init";
-import { getAuth, signInWithPopup, GoogleAuthProvider,onAuthStateChanged,signOut, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider,onAuthStateChanged,signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { redirect, useNavigate } from "react-router-dom";
 
 
@@ -25,14 +25,34 @@ const useFirebase=()=>{
     
    }
 
-   const signinUsingEmailPassword=(email,password)=>{
+   const creatingUsingEmailPassword=(email,password,profession)=>{
     createUserWithEmailAndPassword(auth,email,password)
     .then(result=>{
         setUser(result.user);
-        navigate('/courselist');
+        
     }).catch(err=>{
         setError(err.message);
     })
+    alert('SigUp Successfull');
+    if(profession=='teacher'){
+        navigate('/courselist');
+    }
+    else{
+        navigate('/stucourselist');
+    }
+        
+}
+   const signinUsingEmailPassword=(email,password,profession)=>{
+    signInWithEmailAndPassword(auth,email,password)
+    .then(result=>{
+        setUser(result.user);
+        
+    }).catch(err=>{
+        setError(err.message);
+        alert('Your Email or Password is wrong,try again.')
+    })
+   
+    
 }
 
    const signinUsingGoogleforStudent=()=>{
@@ -50,7 +70,7 @@ const useFirebase=()=>{
     signOut(auth)
     .then(()=>{
         setUser({});
-        navigate('/');
+        navigate('/login');
     })
    }
 
@@ -64,6 +84,7 @@ const useFirebase=()=>{
         signinUsingGoogleforTeacher,
         signinUsingGoogleforStudent,
         signinUsingEmailPassword,
+        creatingUsingEmailPassword,
         user,
         setUser,
         error,
