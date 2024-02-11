@@ -8,7 +8,7 @@ import './header.css';
   
 const Header = () => {
     const {user,logout}=useFirebase();
-    const [profession,setProfession]=useContext(MyContext);
+   
     console.log(user)
     return (
         <div className="navbar bg-base-300">
@@ -22,9 +22,9 @@ const Header = () => {
     <details className="dropdown">
   <summary className="m-1 btn btn-outline">Menu</summary>
   <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
-    <li><a><Link to='/'>Homepage</Link></a></li>
-    <li><a> <Link to='/courselist'>CourseList</Link></a></li>
-    <li><a><Link to='/assignqr'>Assign my Student ID</Link></a></li>
+    <Link to='/'>Homepage</Link>
+    {user?.email? <Link to='/courselist'>CourseList</Link>: <Link to='/stucourselist'>CourseList</Link>}
+    
   </ul>
 </details>
     {/* <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">

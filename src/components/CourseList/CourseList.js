@@ -1,9 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import useFirebase from '../hooks/useFirebase';
 const CourseList = () => {
     const [courses,setCourses]=useState([]);
     const courseRef=useRef();
     const [searchtext,setSearchtext]=useState('');
+    const {user}=useFirebase();
+    const userEmail=user?.email;
+    console.log(userEmail)
     const handleCourseAdd=()=>{
         
         const courseName=courseRef.current.value;
@@ -14,7 +18,7 @@ const CourseList = () => {
                     
                     'Content-Type': 'application/json'
                   },
-                  body:JSON.stringify({courseName})
+                  body:JSON.stringify({courseName,userEmail})
             })
             .then(res=>res.json())
             .then(data=>{
@@ -82,17 +86,20 @@ const CourseList = () => {
            
          </div>
 
-        <div className='mt-12 '>
+        <div className='mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'>
         {
-        searchtext==''?courses.map(course=><div className='p-12 border-2 border-lime-500' key={course._id}>
+        searchtext==''?courses.filter(course=>course.email==userEmail).map(course=><div className='p-12 border-2 border-lime-500' key={course._id}>
            <div>
            {course.name}
            </div>
             
             <Link className='mt-24' to={`/class/${course._id}`}><button>Enter</button></Link>
-        </div>):courses.filter(course => 
+        </div>):courses.filter(course=>course.email==userEmail).filter(course => 
         course.name.toLowerCase().includes(searchtext.toLowerCase())
-      ).map(course=><div className='p-12 border-2 border-lime-500' key={course._id}>
+      ).map(course=>
+      
+      
+      <div className=' p-12 border-2 border-lime-500' key={course._id}>
             {course.name}
             
             <Link to={`/class/${course._id}`}><button>Enter</button></Link>
