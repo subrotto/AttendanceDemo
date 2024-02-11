@@ -18,7 +18,7 @@ const useFirebase=()=>{
     signInWithPopup(auth,googleProvider)
     .then(result=>{
         setUser(result.user);
-        navigate('/courselist');
+        navigate('/');
     }).catch(err=>{
         setError(err.message);
     })

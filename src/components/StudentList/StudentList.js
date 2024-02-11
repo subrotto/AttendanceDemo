@@ -9,10 +9,10 @@ const StudentList = () => {
   const scanneref=useRef();
     const [scanResult, setResult] = useState('');
   const [isStart, setIsStart] = useState(false);
-  
+  const [previousScanResult,setPreviousScanResult]=useState('');
   
 useEffect(()=>{
-  if(scanneref.current.innerText.length>0){
+  if(scanneref.current.innerText.length>0 && scanneref.current.innerText!=previousScanResult){
 
     fetch(`http://localhost:5000/addStudent/${classId}`,{
       method:'POST',
@@ -27,11 +27,11 @@ useEffect(()=>{
       if(data.insertedId){
           alert('Attendance Done');
   }});
-
+  setPreviousScanResult(scanResult);
   }
 
 
-},[scanResult])
+},[scanResult,previousScanResult])
   const handlePlay = () => {
     setResult('');
     setIsStart(!isStart);

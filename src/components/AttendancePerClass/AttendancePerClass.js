@@ -15,11 +15,16 @@ const [studentlist,setStudentlist]=useState([]);
        },[]);
        
     return (
-        <div>
-           Total Students :{studentlist.length}
-            {
+        <div className='mt-5 mb-48'>
+            <button className="btn">
+            Total Students :
+  <div className="badge">{studentlist.length}</div>
+</button>
+           
+          
+         <div className='mt-5'>   {
                 studentlist.map(student=><AttendancePerClassOnePerson studentId={student}></AttendancePerClassOnePerson>)
-            }
+            }</div>
         </div>
     );
 };

@@ -1,8 +1,6 @@
 import React, { createContext, useState } from 'react';
-import { Link, redirect, useNavigate } from 'react-router-dom';
-import useFirebase from '../hooks/useFirebase';
-import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
-import Login from '../Login/Login';
+import Carouselforhome from '../Carousel/Carouselforhome';
+
 
 export const MyContext=createContext('mydrills');
 
@@ -12,7 +10,37 @@ const HomePage = () => {
     return (
        
         <div>
-        
+           
+           <div className="carousel w-full">
+  <div id="slide1" className="carousel-item relative w-full">
+    <img src="https://hstu.ac.bd/img/home/slider/hstu_main_gate.jpg" className="w-full" />
+    <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+      <a href="#slide4" className="btn btn-circle">❮</a> 
+      <a href="#slide2" className="btn btn-circle">❯</a>
+    </div>
+  </div> 
+  <div id="slide2" className="carousel-item relative w-full">
+    <img src="https://hstu.ac.bd/img/home/slider/33.jpg" className="w-full" />
+    <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+      <a href="#slide1" className="btn btn-circle">❮</a> 
+      <a href="#slide3" className="btn btn-circle">❯</a>
+    </div>
+  </div> 
+  <div id="slide3" className="carousel-item relative w-full">
+    <img src="https://hstu.ac.bd/img/home/slider/hstu_main_gate.jpg" className="w-full" />
+    <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+      <a href="#slide2" className="btn btn-circle">❮</a> 
+      <a href="#slide4" className="btn btn-circle">❯</a>
+    </div>
+  </div> 
+  <div id="slide4" className="carousel-item relative w-full">
+    <img src="https://hstu.ac.bd/img/home/slider/33.jpg" className="w-full" />
+    <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+      <a href="#slide3" className="btn btn-circle">❮</a> 
+      <a href="#slide1" className="btn btn-circle">❯</a>
+    </div>
+  </div>
+</div>
         </div>
        
     );
@@ -20,17 +48,3 @@ const HomePage = () => {
 
 export default HomePage;
 
-
-{/* <form onSubmit={handleSubmit}>
-           <label htmlFor="email">E-mail : </label>
-            <input onChange={handleEmail} type="email" name="" id="" />
-            <br />
-            <label htmlFor="password">Password : </label>
-            <input onChange={handlePassword} type="password" name="" id="" />
-            <br />
-           
-           {isLogin?<input onClick={creatingUsingEmailPassword} type="submit" value="Register" />:<input onClick={signinUsingEmailPassword} type="submit" value="Login" />}
-           
-           
-          
-           </form> */}

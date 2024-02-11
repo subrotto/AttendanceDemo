@@ -7,10 +7,10 @@ import 'react-datepicker/dist/react-datepicker.css';
 const ClassList = () => {
     const [classes,setClasses]=useState([]);
     const {courseId}=useParams();
-    const classRef=useRef();
+    
     const [selectedDate, setSelectedDate] = useState(null); 
     const handleClassAdd=()=>{
-        const className=classRef.current.value;
+        
        const classDate=new Date(selectedDate)
         console.log(classDate)
         fetch(`http://localhost:5000/addClass/${courseId}`,{
@@ -27,7 +27,7 @@ const ClassList = () => {
                 
         }});
             setSelectedDate('');
-        classRef.current.value='';
+        
     }
 
     useEffect(()=>{
@@ -43,15 +43,16 @@ const ClassList = () => {
     
     
     return (
-        <div>
-            <input type="text" name="" id="" placeholder='Class Date' ref={classRef}/>
-            <button onClick={handleClassAdd}>ADD CLASS</button>
+        
+        <div className='mb-48'  >
             <ReactDatePicker
                 selected={selectedDate}
                 onChange={date => setSelectedDate(date)}
                 dateFormat="dd/MM/yyyy" // Change the date format here
                 placeholderText="Select class date"
+                className="border border-gray-300 rounded p-2 shadow-md"
             />
+            <button className='btn btn-outline shadow-xl mt-5 mb-5 ml-5' onClick={handleClassAdd}>ADD CLASS</button>
     
             {
                 classes.map(classId=><SpecificClass key={classId} classId={classId}></SpecificClass>) 

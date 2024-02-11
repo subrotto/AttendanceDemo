@@ -1,0 +1,13 @@
+.clockwise-animation {
+    animation: moveLeft 15s linear infinite;
+}
+
+@keyframes moveLeft {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+  

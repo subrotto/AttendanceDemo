@@ -35,7 +35,7 @@ function App() {
         <Route exact path='/perclassattendance/:classId' element={<AttendancePerClass></AttendancePerClass>}></Route>
         <Route exact path='/stuperclassattendance/:classId' element={<StuAttendancePerClass></StuAttendancePerClass>}></Route>
       </Routes>
-      
+      <Footer></Footer>
       </BrowserRouter>
     </div>
   );

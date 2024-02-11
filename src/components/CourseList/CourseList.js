@@ -8,34 +8,30 @@ const CourseList = () => {
     const {user}=useFirebase();
     const userEmail=user?.email;
     console.log(userEmail)
-    const handleCourseAdd=()=>{
-        
-        const courseName=courseRef.current.value;
-        if(courseName){
-            fetch('http://localhost:5000/addCourse',{
-                method:'POST',
-                headers: {
-                    
-                    'Content-Type': 'application/json'
-                  },
-                  body:JSON.stringify({courseName,userEmail})
-            })
-            .then(res=>res.json())
-            .then(data=>{
-                if(data.insertedId){
-                    
-            }
+    const handleCourseAdd = () => {
+        const courseName = courseRef.current.value;
+        if (courseName) {
+          fetch('http://localhost:5000/addCourse', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ courseName, userEmail })
+          })
+            .then(res => res.json())
+            .then(data => {
+              if (data.insertedId) {
+                // Handle success if needed
+              }
             });
-    
-            courseRef.current.value='';
-                    alert('Course Successfully Added');
+      
+          courseRef.current.value = '';
+          alert('Course Successfully Added');
+        } else {
+          alert('Please Enter a Course Name');
         }
-        else{
-            alert('Please Enter a Course Name');
-        }
-        
-
-    }
+      }
+      
 
     const searchOptions=(word)=>{
             setSearchtext(word);
@@ -49,8 +45,8 @@ const CourseList = () => {
     
     
     return (
-        <div className='mt-10 '>
-            <input className='input border border-base-300' onChange={(e)=>searchOptions(e.target.value)} type="text" name="" id="" placeholder='Search to filter course '  />
+        <div className='mt-10 mb-44 '>
+            <input className='input border border-base-300 shadow-xl' onChange={(e)=>searchOptions(e.target.value)} type="text" name="" id="" placeholder='Search to filter course '  />
           
             
             <br />
@@ -66,7 +62,7 @@ const CourseList = () => {
        <div>
         <div className='mb-4'>
   <input
-    className='input border border-base-300'
+    className='input border border-base-300 shadow-xl'
     type="text"
     name=""
     id=""
@@ -79,34 +75,42 @@ const CourseList = () => {
 
 
            
-          <button className='btn btn-outline' onClick={handleCourseAdd}>
+          <button className='btn btn-outline shadow-lg' onClick={handleCourseAdd}>
     ADD COURSE
   </button>
        </div>
            
          </div>
 
-        <div className='mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'>
-        {
-        searchtext==''?courses.filter(course=>course.email==userEmail).map(course=><div className='p-12 border-2 border-lime-500' key={course._id}>
-           <div>
-           {course.name}
-           </div>
-            
-            <Link className='mt-24' to={`/class/${course._id}`}><button>Enter</button></Link>
-        </div>):courses.filter(course=>course.email==userEmail).filter(course => 
-        course.name.toLowerCase().includes(searchtext.toLowerCase())
-      ).map(course=>
-      
-      
-      <div className=' p-12 border-2 border-lime-500' key={course._id}>
-            {course.name}
-            
-            <Link to={`/class/${course._id}`}><button>Enter</button></Link>
-        </div>)
-        
-        }
+         <div className='mt-12 ml-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'>
+  {
+    searchtext === '' ? 
+    courses
+      .filter(course => course.email === userEmail)
+      .map(course =>
+        <div className='p-2 card w-80 h-auto bg-cyan-600 text-primary-content shadow-xl' key={course._id}>
+          <div className='text-white text-3xl'>{course.name}</div>
+          <Link className='' to={`/class/${course._id}`}>
+            <button className='btn btm-nav-sm mb-2 mt-2 shadow-xl'>Enter</button>
+          </Link>
         </div>
+      ) :
+    courses
+      .filter(course => course.email === userEmail)
+      .filter(course => course.name.toLowerCase().includes(searchtext.toLowerCase()))
+      .map(course =>
+        <div className='p-2 card w-80 h-auto bg-cyan-600 text-primary-content' key={course._id}>
+          <div className='text-white text-3xl'>{course.name}</div>
+          <Link to={`/class/${course._id}`}>
+            <button className='btn btn-nav-sm mb-2 mt-2 shadow-xl'>Enter</button>
+          </Link>
+        </div>
+      )
+  }
+</div>
+
+
+
    
 
 
