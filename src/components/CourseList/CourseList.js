@@ -22,6 +22,7 @@ const CourseList = () => {
             .then(data => {
               if (data.insertedId) {
                 // Handle success if needed
+                
               }
             });
       
@@ -30,6 +31,7 @@ const CourseList = () => {
         } else {
           alert('Please Enter a Course Name');
         }
+        window.location.reload();
       }
       
 

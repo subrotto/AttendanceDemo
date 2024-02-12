@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './line.css'
 import LineDesign from '../LineDesign/LineDesign';
+import StudentAttendanceCheck from '../StudentAttendaceCheck/StudentAttendanceCheck';
 
 
 
@@ -9,7 +10,9 @@ import LineDesign from '../LineDesign/LineDesign';
 const SpecificClass = (props) => {
 
    const [classlist,setClasslist]=useState({});
+   const [studentlist,setStudentlist]=useState([]);
         const classId=props.classId;
+        const stuId=props.stuId;
         
    useEffect(()=>{
     fetch(`http://localhost:5000/getClasses/${classId
@@ -17,6 +20,15 @@ const SpecificClass = (props) => {
 .then(res=>res.json())
 .then(classs=>setClasslist(classs))
    },[]);
+
+
+   useEffect(()=>{
+
+      fetch(`http://localhost:5000/getStudentsByClass/${classId}`)
+      .then(res=>res.json())
+      .then(data=>setStudentlist(data.students));
+
+   },[stuId])
 
    
     return (
@@ -40,6 +52,8 @@ const SpecificClass = (props) => {
               <span className="btm-nav-label text-base">Display Attendance</span>
             </button>
           </Link>
+
+          {stuId!=='' && studentlist.map(stulist=><StudentAttendanceCheck stuId={stuId} stulist={stulist}></StudentAttendanceCheck>)}
         </div>
        <div className='mt-5'> <LineDesign></LineDesign></div>
       </div>

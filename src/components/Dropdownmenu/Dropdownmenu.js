@@ -23,7 +23,7 @@ const Dropdownmenu = () => {
           <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
             <li className='text-xl'><Link to='/'>Homepage</Link></li>
             <hr />
-            {user?.email ? <li className='text-xl' ><Link to='/courselist'>CourseList</Link></li> : <li><Link to='/stucourselist'>CourseList</Link></li>}
+            {user?.email ? <li className='text-xl' ><Link to='/courselist'>CourseList</Link></li> : <li className='text-xl'><Link to='/stucourselist'>CourseList</Link></li>}
           </ul>
         )}
       </details>

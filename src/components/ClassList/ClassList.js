@@ -7,6 +7,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 const ClassList = () => {
     const [classes,setClasses]=useState([]);
     const {courseId}=useParams();
+    const [stuId,setStuId]=useState('');
     
     const [selectedDate, setSelectedDate] = useState(null); 
     const handleClassAdd=()=>{
@@ -27,7 +28,7 @@ const ClassList = () => {
                 
         }});
             setSelectedDate('');
-        
+            window.location.reload();
     }
 
     useEffect(()=>{
@@ -39,6 +40,11 @@ const ClassList = () => {
         });
     },[courseId]);
 
+    const handlestuId=(e)=>{
+
+            setStuId(e.target.value);
+
+    }
     
     
     
@@ -53,9 +59,10 @@ const ClassList = () => {
                 className="border border-gray-300 rounded p-2 shadow-md"
             />
             <button className='btn btn-outline shadow-xl mt-5 mb-5 ml-5' onClick={handleClassAdd}>ADD CLASS</button>
-    
+            <br />
+           <label htmlFor="">Enter Student ID to Show Attendance :</label> <input className='input border border-base-300 shadow-xl' onChange={handlestuId} type="text" name="" placeholder='STUDENT ID' id="" />
             {
-                classes.map(classId=><SpecificClass key={classId} classId={classId}></SpecificClass>) 
+                classes.map(classId=><SpecificClass key={classId} classId={classId} stuId={stuId}></SpecificClass>) 
             }
         </div>
     )

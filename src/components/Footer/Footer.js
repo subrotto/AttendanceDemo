@@ -42,15 +42,15 @@ const Footer = () => {
           <h2 className="text-xl font-bold mb-2">Contact</h2>
           <p>Hajee Mohammad Danesh Science and Technology University (HSTU),</p>
           <p>Dinajpur-5200, Bangladesh</p>
-          <p>Phone: +880-531-61355</p>
+          <p>Phone: 01795229598</p>
           {/* Add more contact information as needed */}
         </div>
       </div>
 
       {/* Copyright Section */}
       <div className="mt-8 text-center">
-        <p>&copy; 2021 Copyright Hajee Mohammad Danesh Science and Technology University</p>
-        <p>Powered by: IT Cell, HSTU</p>
+        <p>&copy; 2024 Copyright Hajee Mohammad Danesh Science and Technology University</p>
+        <p>Powered by: Subroto , Parvej & Sabbir</p>
       </div>
     </footer>
   );
