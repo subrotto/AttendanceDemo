@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useFirebase from '../hooks/useFirebase';
 const CourseList = () => {
     const [courses,setCourses]=useState([]);
     const courseRef=useRef();
+    const navigate=useNavigate();
     const [searchtext,setSearchtext]=useState('');
     const {user}=useFirebase();
     const userEmail=user?.email;
@@ -45,7 +46,9 @@ const CourseList = () => {
         .then(data=>setCourses(data.courses));
     },[]);
 
-
+    const handleTotal=()=>{
+      navigate('/totalattendance');
+  }
 
 
     
@@ -85,7 +88,7 @@ const CourseList = () => {
     ADD COURSE
   </button>
        </div>
-           
+       <button onClick={handleTotal} className='btn btn-outline m-5'>Show total attendance</button> <br />    
          </div>
 
          <div className='mt-12 ml-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4'>
