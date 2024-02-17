@@ -6,7 +6,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 
 const ClassList = () => {
-    const navigate=useNavigate();
+   
     const [classes,setClasses]=useState([]);
     const {courseId}=useParams();
     const [stuId,setStuId]=useState('');
@@ -48,9 +48,7 @@ const ClassList = () => {
 
     }
     
-    const handleTotal=()=>{
-        navigate('/totalattendance');
-    }
+   
     
     
     return (
@@ -65,13 +63,13 @@ const ClassList = () => {
             />
             <button className='btn btn-outline shadow-xl mt-5 mb-5 ml-5' onClick={handleClassAdd}>ADD CLASS</button>
             <br />
-            <button onClick={handleTotal} className='btn btn-outline m-5'>Show total attendance</button> <br />
+            
            <label htmlFor="">Enter Student ID to Show Attendance :</label> <input className='input border border-base-300 shadow-xl' onChange={handlestuId} type="text" name="" placeholder='STUDENT ID' id="" />
             {
                 classes.map(classId=><SpecificClass key={classId} classId={classId} stuId={stuId}></SpecificClass>) 
             }
             
-        </div>
+        </div> 
         
     )
     ;
