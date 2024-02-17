@@ -43,7 +43,11 @@ const CourseList = () => {
         fetch('http://localhost:5000/getCourses')
         .then(res=>res.json())
         .then(data=>setCourses(data.courses));
-    },[])
+    },[]);
+
+
+
+
     
     
     return (
@@ -94,6 +98,7 @@ const CourseList = () => {
           <div className='text-white text-3xl'>{course.name}</div>
           <Link className='' to={`/class/${course._id}`}>
             <button className='btn btm-nav-sm mb-2 mt-2 shadow-xl'>Enter</button>
+         
           </Link>
         </div>
       ) :

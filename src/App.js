@@ -15,6 +15,7 @@ import AssignQR from './components/AssignQR/AssignQR';
 import Login from './components/Login/Login';
 import Registration from './components/Registration/Registration';
 import Footer from './components/Footer/Footer';
+import TotalAttendance from './components/TotalAttendance/TotalAttendance';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route exact path='/assignqr' element={<AssignQR></AssignQR>}></Route>
         <Route exact path='/courselist' element={<CourseList></CourseList>}></Route>
         <Route exact path='/login' element={<Login></Login>}></Route>
+        <Route exact path='/totalattendance' element={<TotalAttendance></TotalAttendance>}></Route>
         <Route exact path='/registration' element={<Registration></Registration>}></Route>
         <Route exact path='/stucourselist' element={<StuCourseList></StuCourseList>}></Route>
         <Route exact path='/class/:courseId' element={<ClassList></ClassList>}></Route>
