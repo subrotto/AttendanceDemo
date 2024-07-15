@@ -24,6 +24,10 @@ const Dropdownmenu = () => {
             <li className='text-xl'><Link to='/'>Homepage</Link></li>
             <hr />
             {user?.email ? <li className='text-xl' ><Link to='/courselist'>CourseList</Link></li> : <li className='text-xl'><Link to='/stucourselist'>CourseList</Link></li>}
+            <hr />
+            <li className='text-xl'><Link to='/adminlogin'>Admin Panel</Link></li>
+            <hr />
+            <li className='text-xl'><Link to='/studentlogin'>Student Login</Link></li>
           </ul>
         )}
       </details>

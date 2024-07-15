@@ -16,11 +16,19 @@ import Login from './components/Login/Login';
 import Registration from './components/Registration/Registration';
 import Footer from './components/Footer/Footer';
 import TotalAttendance from './components/TotalAttendance/TotalAttendance';
+import AdminCourse from './components/AdminCourse/AdminCourse';
+import AdminClass from './components/AdminClass/AdminClass';
+import AdminResult from './components/AdminResult/AdminResult';
+import AdminLogin from './components/AdminLogin/AdminLogin';
+import NewStudentList from './components/NewStudentList/NewStudentList';
+import StudentLogin from './components/StudentLogin/StudentLogin';
+import StudentProfile from './components/StudentProfile/StudentProfile';
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
+      
       <Header></Header>
       <Routes>
         <Route exact path='/' element={<HomePage></HomePage>}></Route>
@@ -33,9 +41,16 @@ function App() {
         <Route exact path='/stucourselist' element={<StuCourseList></StuCourseList>}></Route>
         <Route exact path='/class/:courseId' element={<ClassList></ClassList>}></Route>
         <Route exact path='/stuclass/:courseId' element={<StuClassList></StuClassList>}></Route>
+        <Route exact path='/admincourse/:courseId/:studentId' element={<AdminResult></AdminResult>}></Route>
+        <Route exact path='/admincourse/:courseId' element={<AdminClass></AdminClass>}></Route>
         <Route exact path='/student/:classId' element={<StudentList></StudentList>}></Route>
         <Route exact path='/perclassattendance/:classId' element={<AttendancePerClass></AttendancePerClass>}></Route>
         <Route exact path='/stuperclassattendance/:classId' element={<StuAttendancePerClass></StuAttendancePerClass>}></Route>
+        <Route exact path='/admincourse' element={<AdminCourse></AdminCourse>}></Route>
+        <Route exact path='/stu/:coursenam' element={<NewStudentList></NewStudentList>}></Route>
+        <Route exact path='/adminlogin' element={<AdminLogin></AdminLogin>}></Route>
+        <Route exact path='/studentlogin' element={<StudentLogin></StudentLogin>}></Route>
+        <Route exact path='/stuprofile/:studentid' element={<StudentProfile></StudentProfile>}></Route>
       </Routes>
       <Footer></Footer>
       </BrowserRouter>

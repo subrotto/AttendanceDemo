@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import SpecificClass from '../SpecificClass/SpecificClass';
 import ReactDatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -8,6 +8,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 const ClassList = () => {
    
     const [classes,setClasses]=useState([]);
+    const [coursenam,setCourseNam]=useState('');
     const {courseId}=useParams();
     const [stuId,setStuId]=useState('');
     
@@ -42,6 +43,15 @@ const ClassList = () => {
         });
     },[courseId]);
 
+    useEffect(()=>{
+        fetch(`http://localhost:5000/getCourses/${courseId}`)
+        .then(res=>res.json())
+        .then(data=>{
+            setCourseNam( data.name);
+         
+        });
+    },[])
+
     const handlestuId=(e)=>{
 
             setStuId(e.target.value);
@@ -62,6 +72,8 @@ const ClassList = () => {
                 className="border border-gray-300 rounded p-2 shadow-md"
             />
             <button className='btn btn-outline shadow-xl mt-5 mb-5 ml-5' onClick={handleClassAdd}>ADD CLASS</button>
+            <br />
+            <Link to={`/stu/${coursenam}`}><button>Total Attendance for this Course</button></Link>
             <br />
             
            <label htmlFor="">Enter Student ID to Show Attendance :</label> <input className='input border border-base-300 shadow-xl' onChange={handlestuId} type="text" name="" placeholder='STUDENT ID' id="" />

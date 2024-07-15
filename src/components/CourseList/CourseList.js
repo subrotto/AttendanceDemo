@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import useFirebase from '../hooks/useFirebase';
+import studentList from '../../totallist.json';
 const CourseList = () => {
     const [courses,setCourses]=useState([]);
     const courseRef=useRef();
@@ -9,6 +10,7 @@ const CourseList = () => {
     const {user}=useFirebase();
     const userEmail=user?.email;
     console.log(userEmail)
+    console.log(studentList)
     const handleCourseAdd = () => {
         const courseName = courseRef.current.value;
         if (courseName) {
@@ -29,8 +31,25 @@ const CourseList = () => {
       
           courseRef.current.value = '';
           alert('Course Successfully Added');
+          fetch('http://localhost:5000/addAdminCourse', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ courseName })
+          })
+            .then(res => res.json())
+            .then(data => {
+              if (data.insertedId) {
+                // Handle success if needed
+                
+              }
+            });
+      
+          courseRef.current.value = '';
+          
         } else {
-          alert('Please Enter a Course Name');
+          
         }
         window.location.reload();
       }
