@@ -17,7 +17,7 @@ const ClassList = () => {
         
        const classDate=new Date(selectedDate)
         console.log(classDate)
-        fetch(`http://localhost:5000/addClass/${courseId}`,{
+        fetch(`attendance-server-flame.vercel.app/addClass/${courseId}`,{
             method:'POST',
             headers: {
                 
@@ -35,7 +35,7 @@ const ClassList = () => {
     }
 
     useEffect(()=>{
-        fetch(`http://localhost:5000/getCourses/${courseId}`)
+        fetch(`attendance-server-flame.vercel.app/getCourses/${courseId}`)
         .then(res=>res.json())
         .then(data=>{
             setClasses( data.classes);
@@ -44,7 +44,7 @@ const ClassList = () => {
     },[courseId]);
 
     useEffect(()=>{
-        fetch(`http://localhost:5000/getCourses/${courseId}`)
+        fetch(`attendance-server-flame.vercel.app/getCourses/${courseId}`)
         .then(res=>res.json())
         .then(data=>{
             setCourseNam( data.name);

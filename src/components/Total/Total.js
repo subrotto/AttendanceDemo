@@ -8,12 +8,12 @@ const [courseslist,setCourseslist]=useState([]);
 
 useEffect(()=>{
 
-fetch(`http://localhost:5000/getCoursesByStudent/${student}`)
+fetch(`attendance-server-flame.vercel.app/getCoursesByStudent/${student}`)
 .then(res=>res.json())
 .then(data=>setTotaldetails(data.courses));
 
 
-fetch('http://localhost:5000/getCourses')
+fetch('attendance-server-flame.vercel.app/getCourses')
 .then(res=>res.json())
 .then(data=>setCourseslist(data.courses));
 

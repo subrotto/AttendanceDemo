@@ -14,7 +14,7 @@ const CourseList = () => {
     const handleCourseAdd = () => {
         const courseName = courseRef.current.value;
         if (courseName) {
-          fetch('http://localhost:5000/addCourse', {
+          fetch('attendance-server-flame.vercel.app/addCourse', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -31,7 +31,7 @@ const CourseList = () => {
       
           courseRef.current.value = '';
           alert('Course Successfully Added');
-          fetch('http://localhost:5000/addAdminCourse', {
+          fetch('attendance-server-flame.vercel.app/addAdminCourse', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -60,7 +60,7 @@ const CourseList = () => {
     }
 
     useEffect(()=>{
-        fetch('http://localhost:5000/getCourses')
+        fetch('attendance-server-flame.vercel.app/getCourses')
         .then(res=>res.json())
         .then(data=>setCourses(data.courses));
     },[]);

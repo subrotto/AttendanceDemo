@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const AdminCourse = () => {
     const [courses,setCourses]=useState([]);
     useEffect(()=>{
-        fetch('http://localhost:5000/getAdminCourses')
+        fetch('attendance-server-flame.vercel.app/getAdminCourses')
         .then(res=>res.json())
         .then(data=>setCourses(data.courses));
     },[]);

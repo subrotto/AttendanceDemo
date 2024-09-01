@@ -1,0 +1,1 @@
+export const serverLink = "attendance-server-flame.vercel.app"; //backend domain link

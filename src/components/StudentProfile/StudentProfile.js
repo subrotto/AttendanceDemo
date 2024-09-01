@@ -7,7 +7,7 @@ const StudentProfile = () => {
     const [attendedlist,setAttendedlist]=useState([]);
     console.log(studentid)
     useEffect(()=>{
-        fetch(`http://localhost:5000/getCoursesWithScores/${studentid}`)
+        fetch(`attendance-server-flame.vercel.app/getCoursesWithScores/${studentid}`)
         .then(res=>res.json())
         .then(data=>{
             setAttendedlist( data.courses);

@@ -15,7 +15,7 @@ const SpecificClass = (props) => {
         const stuId=props.stuId;
         
    useEffect(()=>{
-    fetch(`http://localhost:5000/getClasses/${classId
+    fetch(`attendance-server-flame.vercel.app/getClasses/${classId
 }`)
 .then(res=>res.json())
 .then(classs=>setClasslist(classs))
@@ -24,7 +24,7 @@ const SpecificClass = (props) => {
 
    useEffect(()=>{
 
-      fetch(`http://localhost:5000/getStudentsByClass/${classId}`)
+      fetch(`attendance-server-flame.vercel.app/getStudentsByClass/${classId}`)
       .then(res=>res.json())
       .then(data=>setStudentlist(data.students));
 

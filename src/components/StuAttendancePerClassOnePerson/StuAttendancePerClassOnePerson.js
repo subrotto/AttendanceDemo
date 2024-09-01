@@ -6,7 +6,7 @@ const StuAttendancePerClassOnePerson = (props) => {
     
 
     useEffect(()=>{
-        fetch(`http://localhost:5000/getStudents/${studentId}`)
+        fetch(`attendance-server-flame.vercel.app/getStudents/${studentId}`)
         .then(res=>res.json())
         .then(data=>setStudent(data));
     },[]);

@@ -14,7 +14,7 @@ const StudentList = () => {
 useEffect(()=>{
   if(scanneref.current.innerText.length>0 && scanneref.current.innerText!=previousScanResult){
 
-    fetch(`http://localhost:5000/addStudent/${classId}`,{
+    fetch(`attendance-server-flame.vercel.app/addStudent/${classId}`,{
       method:'POST',
       headers: {
           
@@ -57,7 +57,7 @@ useEffect(()=>{
 
 const handleStudent=()=>{
   const studentId=studentRef.current.value;
-  fetch(`http://localhost:5000/addStudent/${classId}`,{
+  fetch(`attendance-server-flame.vercel.app/addStudent/${classId}`,{
         method:'POST',
         headers: {
             

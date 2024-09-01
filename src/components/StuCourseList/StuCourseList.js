@@ -8,7 +8,7 @@ const StuCourseList = () => {
         setSearchtext(word);
 }
     useEffect(()=>{
-        fetch('http://localhost:5000/getCourses')
+        fetch('attendance-server-flame.vercel.app/getCourses')
         .then(res=>res.json())
         .then(data=>setCourses(data.courses));
     },[])

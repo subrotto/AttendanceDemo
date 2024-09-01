@@ -8,7 +8,7 @@ const StuClassList = () => {
     
 
     useEffect(()=>{
-        fetch(`http://localhost:5000/getCourses/${courseId}`)
+        fetch(`attendance-server-flame.vercel.app/getCourses/${courseId}`)
         .then(res=>res.json())
         .then(data=>{
             setClasses( data.classes);

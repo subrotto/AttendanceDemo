@@ -7,7 +7,7 @@ const NewStudentList = () => {
     const [stuforcourse,setStuforcourse]=useState([]);
    
     useEffect(()=>{
-        fetch(`http://localhost:5000/getStudentIdsByCourseName/${coursenam}`)
+        fetch(`attendance-server-flame.vercel.app/getStudentIdsByCourseName/${coursenam}`)
         .then(res=>res.json())
         .then(data=>{
             setStuforcourse( data.studentIds);

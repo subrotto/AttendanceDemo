@@ -5,7 +5,7 @@ const AdminAttendance = (props) => {
     const [attend,setAttend]=useState(null)
     let percentage=0;
     useEffect(()=>{
-        fetch(`http://localhost:5000/getCoursesAndAttendance/${studentid}`)
+        fetch(`attendance-server-flame.vercel.app/getCoursesAndAttendance/${studentid}`)
         .then(res=>res.json())
         .then(data=>{
              setAttend(data.coursesWithAttendance);

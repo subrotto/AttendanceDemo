@@ -7,7 +7,7 @@ const StuAttendancePerClass = () => {
 const {classId}=useParams();
 const [studentlist,setStudentlist]=useState([]);
     useEffect(()=>{
-        fetch(`http://localhost:5000/getClasses/${classId
+        fetch(`attendance-server-flame.vercel.app/getClasses/${classId
     }`)
     .then(res=>res.json())
     .then(classs=>setStudentlist(classs.students))

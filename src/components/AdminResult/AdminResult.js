@@ -9,7 +9,7 @@ const AdminResult = () => {
     const finalRef=useRef();
     const navigate=useNavigate()
     useEffect(()=>{
-        fetch(`http://localhost:5000/getAdminStudent/${courseId}/${studentId}`)
+        fetch(`attendance-server-flame.vercel.app/getAdminStudent/${courseId}/${studentId}`)
         .then(res=>res.json())
         .then(data=>{
             // setStudent( data.student);
@@ -26,7 +26,7 @@ const AdminResult = () => {
         student.final?final=student.final:final=finalRef.current.value;
 
         if(mid!='' || quiz!='' || final!=''){
-            fetch('http://localhost:5000/updateStudentScores', {
+            fetch('attendance-server-flame.vercel.app/updateStudentScores', {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json'

@@ -11,7 +11,7 @@ const AdminClass = () => {
     const handleAddstudent=()=>{
         const studentId = studentidRef.current.value;
         if(studentId){
-            fetch(`http://localhost:5000/assignStudentToCourse`,{
+            fetch(`attendance-server-flame.vercel.app/assignStudentToCourse`,{
                 method:'POST',
                 headers: {
                     
@@ -32,7 +32,7 @@ const AdminClass = () => {
     }
 
     useEffect(()=>{
-        fetch(`http://localhost:5000/getAdminStudents/${courseId}`)
+        fetch(`attendance-server-flame.vercel.app/getAdminStudents/${courseId}`)
         .then(res=>res.json())
         .then(data=>{
             setStudents( data.students);
@@ -42,7 +42,7 @@ const AdminClass = () => {
     },[])
 
     useEffect(()=>{
-        fetch(`http://localhost:5000/getCourse/${courseId}`)
+        fetch(`attendance-server-flame.vercel.app/getCourse/${courseId}`)
         .then(res=>res.json())
         .then(data=>{
              setCourseNam(data.course.courseName);

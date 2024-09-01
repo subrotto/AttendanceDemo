@@ -8,7 +8,7 @@ const StuSpecificClass = (props) => {
         const classId=props.classId;
         
    useEffect(()=>{
-    fetch(`http://localhost:5000/getClasses/${classId
+    fetch(`attendance-server-flame.vercel.app/getClasses/${classId
 }`)
 .then(res=>res.json())
 .then(classs=>setClasslist(classs))
